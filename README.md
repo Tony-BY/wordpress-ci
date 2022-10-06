@@ -1,1 +1,1 @@
-# wordpress-ci-cd
+# wordpress-ci
