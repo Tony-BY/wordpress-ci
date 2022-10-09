@@ -10,7 +10,7 @@ entries:
     name: wordpress
     type: application
     urls:
-    - https://tony-by.github.io/wordpress-ci/wordpress-0.0.17.tgz
+    - https://tony-by.github.io/wordpress-ci/releases/wordpress-0.0.17.tgz
     version: 0.0.17
   - apiVersion: v2
     appVersion: 0.0.16
