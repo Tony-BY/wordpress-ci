@@ -96,6 +96,7 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add .
           git commit -m "Update appVersion to ${{ needs.bump-ver-push-tag.outputs.tag }} by GitHub Actions"
+          git push origin main
   lint-helm:
     name: Helm Lint
     needs: [bump-ver-push-tag, generate-chart]
@@ -136,7 +137,7 @@ jobs:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   slackNotification:
     name: Slack notofication
-    needs: [bump-ver-push-tag, chart-release]
+    needs: [bump-ver-push-tag, build-and-push-image, chart-release]
     runs-on: ubuntu-latest
     steps:
     - name: Slack Notify
