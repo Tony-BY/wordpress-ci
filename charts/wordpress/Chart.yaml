@@ -3,5 +3,5 @@ name: wordpress
 description: Project SA-Wordpress
 type: application
 version: 0.0.4
-appVersion: 0.0.6
+appVersion: 0.0.7
 icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
