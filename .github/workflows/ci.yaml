@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Checkout   
         uses: actions/checkout@v3
+      
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.0
@@ -31,41 +32,44 @@ jobs:
     steps:
       - name: Checkecout
         uses: actions/checkout@v3
+      
       - name: Login to the Container registry
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
           context: ./wordpress
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/wordpress:${{ needs.bump-ver-push-tag.outputs.tag }}
-  list-manifests:
-    name: List manifests for validation  
-    runs-on: ubuntu-latest
-    outputs:
-       matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - id: set-matrix
-        run: echo "::set-output name=matrix::$(ls charts/wordpress/templates/*.yaml | jq -R -s -c 'split("\n")[:-1]')"
-  kubeval:
-    name: Validate manifests
-    needs: list-manifests
-    runs-on: ubuntu-latest
-    strategy:
-         matrix:
-             manifest: ${{ fromJson(needs.list-manifests.outputs.matrix) }}
-    steps:
-      - name: Ckeckout 
-        uses: actions/checkout@v3     
-      - name: Validate manifests by kubeval 
-        uses: instrumenta/kubeval-action@master
-        with:
-          files: ${{ matrix.manifest }}       
+  # list-manifests:
+  #   name: List manifests for validation  
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #      matrix: ${{ steps.set-matrix.outputs.matrix }}
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - id: set-matrix
+  #       run: echo "::set-output name=matrix::$(ls charts/wordpress/templates/*.yaml | jq -R -s -c 'split("\n")[:-1]')"
+  # kubeval:
+  #   name: Validate manifests
+  #   needs: list-manifests
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #        matrix:
+  #            manifest: ${{ fromJson(needs.list-manifests.outputs.matrix) }}
+  #   steps:
+  #     - name: Ckeckout 
+  #       uses: actions/checkout@v3     
+  
+  #     - name: Validate manifests by kubeval 
+  #       uses: instrumenta/kubeval-action@master
+  #       with:
+  #         files: ${{ matrix.manifest }}       
   generate-chart:
     name: Generate Chart
     needs: [bump-ver-push-tag, kubeval]
@@ -77,33 +81,55 @@ jobs:
       #   uses: Azure/setup-helm@v3
       #   with:    
       #     version: v3.10.0
+  
       # - name: Helm package
       #   run: |
       #   helm package charts/wordpress --version ${{ needs.bump-ver-push-tag.outputs.tag }} --app-version ${{ needs.bump-ver-push-tag.outputs.tag }}
+
       - name: Update appVersion
         run: |
           sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
+
       - name: Commit changes
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add .
           git commit -m "Update appVersion to ${{ needs.bump-ver-push-tag.outputs.tag }} by GitHub Actions"
-  chart-release:
-    name: Chart release
-    needs: [bump-ver-push-tag, generate-chart]
+  lint-helm:
+    name: Helm Lint
+    needs: [bump-ver-push-tag, generate-cahrt]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Configure Git
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: Install Helm
         uses: Azure/setup-helm@v3
         with:
           version: v3.10.0
+
+      - name: Helm lint
+        run: |
+          helm lint ./charts/wordpress              
+  chart-release:
+    name: Chart release
+    needs: [bump-ver-push-tag, lint-helm]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: Azure/setup-helm@v3
+        with:
+          version: v3.10.0
+
       - name: Helm Chart Releaser
         uses: helm/chart-releaser-action@v1.4.1
         env: 
