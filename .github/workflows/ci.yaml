@@ -72,7 +72,7 @@ jobs:
   #         files: ${{ matrix.manifest }}       
   generate-chart:
     name: Generate Chart
-    needs: [bump-ver-push-tag, kubeval]
+    needs: bump-ver-push-tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkecout
