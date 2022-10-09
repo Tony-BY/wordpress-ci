@@ -153,7 +153,7 @@ jobs:
       uses: rtCamp/action-slack-notify@v2.2.0
       env:
           SLACK_CHANNEL: notifications
-          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: 'Release v${{ needs.bump-ver-push-tag.outputs.tag }} Status: ${{ job.status }} :rocket:'
           SLACK_TITLE: Chart Release
