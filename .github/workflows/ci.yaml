@@ -73,38 +73,38 @@ jobs:
   #       with:
   #         files: ${{ matrix.manifest }}       
   
-  generate-chart:
-    name: Generate Chart
-    needs: bump-ver-push-tag
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkecout
-        uses: actions/checkout@v3
-      # - name: Install Helm
-      #   uses: Azure/setup-helm@v3
-      #   with:    
-      #     version: v3.10.0
+  # generate-chart:
+  #   name: Generate Chart
+  #   needs: bump-ver-push-tag
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkecout
+  #       uses: actions/checkout@v3
+  #     # - name: Install Helm
+  #     #   uses: Azure/setup-helm@v3
+  #     #   with:    
+  #     #     version: v3.10.0
   
-      # - name: Helm package
-      #   run: |
-      #   helm package charts/wordpress --version ${{ needs.bump-ver-push-tag.outputs.tag }} --app-version ${{ needs.bump-ver-push-tag.outputs.tag }}
+  #     # - name: Helm package
+  #     #   run: |
+  #     #   helm package charts/wordpress --version ${{ needs.bump-ver-push-tag.outputs.tag }} --app-version ${{ needs.bump-ver-push-tag.outputs.tag }}
 
-      - name: Update appVersion
-        run: |
-          # sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
-          sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
+  #     - name: Update appVersion
+  #       run: |
+  #         sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
+  #         sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
 
-      - name: Commit changes
-        run: |
-          git config user.name "$GITHUB_ACTOR"
-          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add .
-          git commit -m "Update appVersion to ${{ needs.bump-ver-push-tag.outputs.tag }} by GitHub Actions"
-          git push origin main
+  #     - name: Commit changes
+  #       run: |
+  #         git config user.name "$GITHUB_ACTOR"
+  #         git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+  #         git add .
+  #         git commit -m "Update appVersion to ${{ needs.bump-ver-push-tag.outputs.tag }} by GitHub Actions"
+  #         git push origin main
   
   lint-helm:
     name: Helm Lint
-    needs: [bump-ver-push-tag, generate-chart]
+    needs: bump-ver-push-tag
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -139,12 +139,30 @@ jobs:
         with:
           version: v3.10.0
 
-      - name: Helm Chart Releaser
-        uses: helm/chart-releaser-action@v1.4.1
-        with:
-          charts_dir: ./charts/wordpress
-        env: 
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Update appVersion
+        run: |
+          sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
+          sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
+
+      - name: Generate Chart
+        run: |
+          if ![ -d ./releases ]; then
+          mkdir releases
+          fi
+          helm package ./charts/wordpress
+          helm repo index --url https://tony-by.github.io/wordpress-ci/ --merge index.yaml .
+          mv index.yaml ./releases
+          mv wordpress-* ./releases
+          git add .
+          git commit -m "Chart release version ${{ needs.bump-ver-push-tag.outputs.tag }}"
+          git push origin main
+
+      # - name: Helm Chart Releaser
+      #   uses: helm/chart-releaser-action@v1.4.1
+      #   with:
+      #     charts_dir: ./charts/wordpress
+      #   env: 
+      #     CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   
   slackNotification:
     name: Slack notofication
