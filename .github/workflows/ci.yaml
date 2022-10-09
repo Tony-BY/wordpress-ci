@@ -55,7 +55,7 @@ jobs:
     name: Validate manifests
     needs: list-manifests
     runs-on: ubuntu-latest
-     strategy:
+    strategy:
          matrix:
              manifest: ${{ fromJson(needs.list-manifests.outputs.matrix) }}
      steps:
