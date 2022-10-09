@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  wordpress:
+  - apiVersion: v2
+    appVersion: 0.0.16
+    created: "2022-10-09T15:53:27.52342993Z"
+    description: Project SA-Wordpress
+    digest: 7b3144b2d4f563683f3bdb301caaea72fbb569cde8b0746a4dd729e21808a592
+    icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
+    name: wordpress
+    type: application
+    urls:
+    - https://tony-by.github.io/wordpress-ci/wordpress-0.0.16.tgz
+    version: 0.0.16
+generated: "2022-10-09T15:53:27.52277392Z"
