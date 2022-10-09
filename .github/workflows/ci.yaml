@@ -105,8 +105,8 @@ jobs:
           version: v3.10.0
       - name: Helm Chart Releaser
         uses: helm/chart-releaser-action@v1.4.1
-          env: 
-            CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        env: 
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   slackNotification:
     name: Slack notofication
     needs: [bump-ver-push-tag, chart-release]
