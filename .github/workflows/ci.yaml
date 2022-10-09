@@ -147,7 +147,7 @@ jobs:
       - name: Generate Chart
         run: |
           helm package ./charts/wordpress
-          helm repo index --url https://tony-by.github.io/wordpress-ci/release --merge index.yaml .
+          helm repo index --url https://tony-by.github.io/wordpress-ci/releases --merge index.yaml .
           mv -f wordpress-* ./releases
           git add .
           git commit -m "Chart release version ${{ needs.bump-ver-push-tag.outputs.tag }}"
