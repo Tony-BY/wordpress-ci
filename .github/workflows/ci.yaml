@@ -104,7 +104,7 @@ jobs:
   
   lint-helm:
     name: Helm Lint
-    needs: [bump-ver-push-tag, generate-cahrt]
+    needs: [bump-ver-push-tag, generate-chart]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
