@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: {{ template "wordpress.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     app: {{ template "wordpress.name" . }}
     chart: {{ template "wordpress.chart" . }}

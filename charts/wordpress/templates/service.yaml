@@ -2,6 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{ template "wordpress.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     app: {{ template "wordpress.name" . }}
     chart: {{ template "wordpress.chart" . }}
@@ -21,6 +22,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{ template "wordpress.fullname" . }}-preview
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     app: {{ template "wordpress.name" . }}
     chart: {{ template "wordpress.chart" . }}
