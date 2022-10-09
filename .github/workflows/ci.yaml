@@ -146,9 +146,7 @@ jobs:
 
       - name: Generate Chart
         run: |
-          if ![ -d ./releases ]; then
           mkdir releases
-          fi
           helm package ./charts/wordpress
           helm repo index --url https://tony-by.github.io/wordpress-ci/ --merge index.yaml .
           mv index.yaml ./releases
