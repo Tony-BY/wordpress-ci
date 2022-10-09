@@ -134,6 +134,8 @@ jobs:
 
       - name: Helm Chart Releaser
         uses: helm/chart-releaser-action@v1.4.1
+        with:
+          chart_dir: ./charts/wordpress
         env: 
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   slackNotification:
