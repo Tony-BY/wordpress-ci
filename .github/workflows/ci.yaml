@@ -149,7 +149,7 @@ jobs:
           mkdir releases
           helm package ./charts/wordpress
           helm repo index --url https://tony-by.github.io/wordpress-ci/ --merge index.yaml .
-          mv wordpress-* ./releases
+          mv -f wordpress-* ./releases
           git add .
           git commit -m "Chart release version ${{ needs.bump-ver-push-tag.outputs.tag }}"
           git push origin main
