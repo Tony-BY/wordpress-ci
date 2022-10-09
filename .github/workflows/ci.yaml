@@ -143,6 +143,13 @@ jobs:
           charts_dir: ./charts/wordpress
         env: 
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        # run: |
+        #   helm package ./charts/wordpress
+        #   helm repo index --url https://tony-by.github.io/wordpress-ci/ --merge index.yaml .
+        #   git checkout gh-pages
+        #   git add index.yaml
+        #   git add wordpress-*
+        #   git commit -m "Relese chart v${{ needs.bump-ver-push-tag.outputs.tag }}"
   
   slackNotification:
     name: Slack notofication
