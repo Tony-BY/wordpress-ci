@@ -51,23 +51,23 @@ jobs:
         uses: actions/checkout@v3
       - id: set-matrix
         run: echo "::set-output name=matrix::$(ls charts/wordpress/templates/*.yaml | jq -R -s -c 'split("\n")[:-1]')"
-  validate-manifests:
+  kubeval:
     name: Validate manifests
     needs: list-manifests
     runs-on: ubuntu-latest
     strategy:
          matrix:
              manifest: ${{ fromJson(needs.list-manifests.outputs.matrix) }}
-     steps:
-       - name: Ckeckout 
-       - uses: actions/checkout@v3     
-       - name: Validate manifests by kubeval 
-         uses: instrumenta/kubeval-action@master
-         with:
-           files: ${{ matrix.manifest }}       
+    steps:
+      - name: Ckeckout 
+      - uses: actions/checkout@v3     
+      - name: Validate manifests by kubeval 
+        uses: instrumenta/kubeval-action@master
+        with:
+          files: ${{ matrix.manifest }}       
   generate-chart:
     name: Generate Chart
-    needs: [bump-ver-push-tag, validate-manifests]
+    needs: [bump-ver-push-tag, kubeval]
     runs-on: ubuntu-latest
     steps:
       - name: Checkecout
