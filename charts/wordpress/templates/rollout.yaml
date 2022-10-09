@@ -44,4 +44,4 @@ spec:
       volumes:
       - name: persistent-storage
         persistentVolumeClaim:
-          claimName: wordpress-pv-claim    
+          claimName: {{ template "wordpress.name" . }}    
