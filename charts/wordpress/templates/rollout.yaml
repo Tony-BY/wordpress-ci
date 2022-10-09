@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: {{ template "wordpress.fullname" . }}
+  labels:
+    app: {{ template "wordpress.name" . }}
+    chart: {{ template "wordpress.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: {{ template "wordpress.name" . }}
+      release: {{ .Release.Name }}
+  strategy:
+    blueGreen:
+      activeService: {{ template "wordpress.fullname" . }}
+      previewService: {{ template "wordpress.fullname" . }}-preview
+      autoPromotionEnabled: false     
+  template:
+    metadata:
+      labels:
+        app: {{ template "wordpress.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        {{- with .Values.env }}
+           {{- . | toYaml | nindent 10 -}}
+        {{- end }}   
+        ports:
+        - containerPort: 80
+        resources:
+{{ toYaml .Values.resources | nindent 12 }}        
+        volumeMounts:
+        - name: persistent-storage
+          mountPath: "/var/www/html/"
+      volumes:
+      - name: persistent-storage
+        persistentVolumeClaim:
+          claimName: wordpress-pv-claim    
