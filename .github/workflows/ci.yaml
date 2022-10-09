@@ -88,7 +88,7 @@ jobs:
 
       - name: Update appVersion
         run: |
-          sed -i "s/^version:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
+          # sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
           sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
 
       - name: Commit changes
