@@ -25,6 +25,7 @@ jobs:
       #     tag: ${{ steps.tag_version.outputs.new_tag }}
       #     name: Release ${{ steps.tag_version.outputs.new_tag }}
       #     body: ${{ steps.tag_version.outputs.changelog }}
+  
   build-and-push-image:
     name: Build and push image 
     needs: bump-ver-push-tag
@@ -45,6 +46,7 @@ jobs:
           context: ./wordpress
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/wordpress:${{ needs.bump-ver-push-tag.outputs.tag }}
+  
   # list-manifests:
   #   name: List manifests for validation  
   #   runs-on: ubuntu-latest
@@ -70,6 +72,7 @@ jobs:
   #       uses: instrumenta/kubeval-action@master
   #       with:
   #         files: ${{ matrix.manifest }}       
+  
   generate-chart:
     name: Generate Chart
     needs: bump-ver-push-tag
@@ -98,6 +101,7 @@ jobs:
           git add .
           git commit -m "Update appVersion to ${{ needs.bump-ver-push-tag.outputs.tag }} by GitHub Actions"
           git push origin main
+  
   lint-helm:
     name: Helm Lint
     needs: [bump-ver-push-tag, generate-chart]
@@ -114,6 +118,7 @@ jobs:
       - name: Helm lint
         run: |
           helm lint ./charts/wordpress              
+  
   chart-release:
     name: Chart release
     needs: [bump-ver-push-tag, lint-helm]
@@ -135,9 +140,10 @@ jobs:
       - name: Helm Chart Releaser
         uses: helm/chart-releaser-action@v1.4.1
         with:
-          chart_dir: ./charts/wordpress
+          charts_dir: ./charts/wordpress
         env: 
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+  
   slackNotification:
     name: Slack notofication
     needs: [bump-ver-push-tag, build-and-push-image, chart-release]
