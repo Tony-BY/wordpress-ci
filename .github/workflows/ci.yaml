@@ -137,6 +137,7 @@ jobs:
           mv main/gh-pages/* gh-pages
           cd gh-pages
           ls -ll
+          helm repo index --url https://tony-by.github.io/wordpress-ci/ --merge index.yaml .
           cat index.yaml
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
