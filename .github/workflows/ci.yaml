@@ -28,7 +28,7 @@ jobs:
   
   docker-lint:
     name: Docker Lint
-    # heeds:
+    heeds: bump-ver-push-tag
     runs-on: ubuntu-latest
     steps: 
       - name: Checkecout
