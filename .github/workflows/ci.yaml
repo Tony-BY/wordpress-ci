@@ -62,32 +62,6 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/wordpress:${{ needs.bump-ver-push-tag.outputs.tag }}
   
-  # list-manifests:
-  #   name: List manifests for validation  
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #      matrix: ${{ steps.set-matrix.outputs.matrix }}
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #     - id: set-matrix
-  #       run: echo "::set-output name=matrix::$(ls charts/wordpress/templates/*.yaml | jq -R -s -c 'split("\n")[:-1]')"
-  # kubeval:
-  #   name: Validate manifests
-  #   needs: list-manifests
-  #   runs-on: ubuntu-latest
-  #   strategy:
-  #        matrix:
-  #            manifest: ${{ fromJson(needs.list-manifests.outputs.matrix) }}
-  #   steps:
-  #     - name: Ckeckout 
-  #       uses: actions/checkout@v3     
-  
-  #     - name: Validate manifests by kubeval 
-  #       uses: instrumenta/kubeval-action@master
-  #       with:
-  #         files: ${{ matrix.manifest }}       
-  
   generate-chart:
     name: Generate Chart
     needs: bump-ver-push-tag
