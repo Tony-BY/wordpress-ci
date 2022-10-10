@@ -2,19 +2,30 @@ apiVersion: v1
 entries:
   wordpress:
   - apiVersion: v2
+    appVersion: 0.0.29
+    created: "2022-10-10T08:05:26.236007046Z"
+    description: Project SA-Wordpress
+    digest: 588a8e7bd51e84553136fd4470d10a470aa255c909f277b7f4b39412d8914ca3
+    icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
+    name: wordpress
+    type: application
+    urls:
+    - https://tony-by.github.io/wordpress-ci/releases/wordpress-0.0.29.tgz
+    version: 0.0.29
+  - apiVersion: v2
     appVersion: 0.0.28
-    created: "2022-10-10T08:01:25.321746115Z"
+    created: "2022-10-10T08:05:26.238527862Z"
     description: Project SA-Wordpress
     digest: e037ba7508d10870c74aea917233c17bc0c9404f658db9dbe46e8301020e9e31
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
     name: wordpress
     type: application
     urls:
-    - https://tony-by.github.io/wordpress-ci/releases/wordpress-0.0.28.tgz
+    - https://tony-by.github.io/wordpress-ci/releases/releases/wordpress-0.0.28.tgz
     version: 0.0.28
   - apiVersion: v2
     appVersion: 0.0.25
-    created: "2022-10-10T08:01:25.323858486Z"
+    created: "2022-10-10T08:05:26.238026959Z"
     description: Project SA-Wordpress
     digest: 357a8d87792a14deb2f47c5c6158141d31b16e98f84118c7196ba8823b99c514
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -25,7 +36,7 @@ entries:
     version: 0.0.25
   - apiVersion: v2
     appVersion: 0.0.24
-    created: "2022-10-10T08:01:25.323318668Z"
+    created: "2022-10-10T08:05:26.237484455Z"
     description: Project SA-Wordpress
     digest: f18c4f56bd7aad5e07548086cdfe2bdeab029ebeae7cda8c56bf415a9f1d0553
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -36,7 +47,7 @@ entries:
     version: 0.0.24
   - apiVersion: v2
     appVersion: 0.0.23
-    created: "2022-10-10T08:01:25.322737348Z"
+    created: "2022-10-10T08:05:26.236925052Z"
     description: Project SA-Wordpress
     digest: afb535bcf13856f50d390c450848b0e0edb8bc2b144cd96fd29a60125af6e359
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -45,4 +56,4 @@ entries:
     urls:
     - https://tony-by.github.io/wordpress-ci/releases/releases/wordpress-0.0.23.tgz
     version: 0.0.23
-generated: "2022-10-10T08:01:25.319718246Z"
+generated: "2022-10-10T08:05:26.23495914Z"
