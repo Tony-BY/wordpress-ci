@@ -19,12 +19,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag_prefix: "" 
-      # - name: Create a GitHub release
-      #   uses: ncipollo/release-action@v1
-      #   with:
-      #     tag: ${{ steps.tag_version.outputs.new_tag }}
-      #     name: Release ${{ steps.tag_version.outputs.new_tag }}
-      #     body: ${{ steps.tag_version.outputs.changelog }}
   
   docker-lint:
     name: Docker Lint
@@ -144,43 +138,6 @@ jobs:
           git add .
           git diff --quiet && git diff --staged --quiet || git commit -m "Chart release ${{ needs.bump-ver-push-tag.outputs.tag }}" -m "${{ github.event.head_commit.message }}"       
           git push
-
-    ### Old version. Clean if new version works fine
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-      #   with:
-      #     fetch-depth: 0
-
-      # - name: Configure Git
-      #   run: |
-      #     git config user.name "$GITHUB_ACTOR"
-      #     git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      # - name: Install Helm
-      #   uses: Azure/setup-helm@v3
-      #   with:
-      #     version: v3.10.0
-
-      # - name: Update appVersion
-      #   run: |
-      #     sed -i "s/^version:.*$/version: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
-      #     sed -i "s/^appVersion:.*$/appVersion: ${{ needs.bump-ver-push-tag.outputs.tag }}/" ./charts/wordpress/Chart.yaml
-
-      # - name: Generate Chart
-      #   run: |
-      #     helm package ./charts/wordpress
-      #     helm repo index --url https://tony-by.github.io/wordpress-ci/releases --merge index.yaml .
-      #     mv -f wordpress-* ./releases
-      #     git add .
-      #     git commit -m "Chart release version ${{ needs.bump-ver-push-tag.outputs.tag }}"
-      #     git push origin main
-
-      # - name: Helm Chart Releaser
-      #   uses: helm/chart-releaser-action@v1.4.1
-      #   with:
-      #     charts_dir: ./charts/wordpress
-      #   env: 
-      #     CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   
   slackNotification:
     name: Slack notofication
