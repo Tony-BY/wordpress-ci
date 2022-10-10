@@ -2,8 +2,19 @@ apiVersion: v1
 entries:
   wordpress:
   - apiVersion: v2
+    appVersion: 0.0.40
+    created: "2022-10-10T13:28:53.751488998Z"
+    description: Project SA-Wordpress
+    digest: dfa859d26482bdc38dfd2c20ef9be3b7d594bb8d4cb1b8a4d8344e84dd75ae3b
+    icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
+    name: wordpress
+    type: application
+    urls:
+    - https://tony-by.github.io/wordpress-ci/wordpress-0.0.40.tgz
+    version: 0.0.40
+  - apiVersion: v2
     appVersion: 0.0.39
-    created: "2022-10-10T13:20:46.931369959Z"
+    created: "2022-10-10T13:28:53.751103492Z"
     description: Project SA-Wordpress
     digest: 760ad78854d6a49bdc1e4b9697c10c58ebd3b100cc8e8e38461872d2bd01a16f
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -12,4 +23,48 @@ entries:
     urls:
     - https://tony-by.github.io/wordpress-ci/wordpress-0.0.39.tgz
     version: 0.0.39
-generated: "2022-10-10T13:20:46.930756756Z"
+  - apiVersion: v2
+    appVersion: 0.0.38
+    created: "2022-10-10T13:28:53.750691785Z"
+    description: Project SA-Wordpress
+    digest: 0198768544cb1afff0b090ddd5fa38f1684bc41408c2039173faeff4f82f8319
+    icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
+    name: wordpress
+    type: application
+    urls:
+    - https://tony-by.github.io/wordpress-ci/wordpress-0.0.38.tgz
+    version: 0.0.38
+  - apiVersion: v2
+    appVersion: 0.0.37
+    created: "2022-10-10T13:28:53.750279079Z"
+    description: Project SA-Wordpress
+    digest: e7c9778a00c0c37e012b3b165c3e7e6790ddb90faf424b4ef33de393a3f0de21
+    icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
+    name: wordpress
+    type: application
+    urls:
+    - https://tony-by.github.io/wordpress-ci/wordpress-0.0.37.tgz
+    version: 0.0.37
+  - apiVersion: v2
+    appVersion: 0.0.36
+    created: "2022-10-10T13:28:53.749870672Z"
+    description: Project SA-Wordpress
+    digest: 43dfe324dc056268c522b8e2e88b7a04b146276c1bc684acf625d6a0ae2bd02c
+    icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
+    name: wordpress
+    type: application
+    urls:
+    - https://tony-by.github.io/wordpress-ci/wordpress-0.0.36.tgz
+    version: 0.0.36
+  - apiVersion: v2
+    appVersion: 0.0.35
+    created: "2022-10-10T13:28:53.749441965Z"
+    description: Project SA-Wordpress
+    digest: 5200da2ed61e5096f7d525c79a13ee70f39d92e8b7670ccb8c87de06671f322c
+    icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
+    name: wordpress
+    type: application
+    urls:
+    - https://tony-by.github.io/wordpress-ci/wordpress-0.0.35.tgz
+    version: 0.0.35
+generated: "2022-10-10T13:28:53.748829056Z"
