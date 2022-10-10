@@ -117,6 +117,13 @@ jobs:
           ref: 'gh-pages'
           path: 'gh-pages'
 
+      - name: List Directories
+        run: |
+          echo "List main"
+          ls -ll main/
+          echo "List gh-pages"
+          ls -ll gh-pages/    
+
       - name: Install Helm
         uses: Azure/setup-helm@v3
         with:
