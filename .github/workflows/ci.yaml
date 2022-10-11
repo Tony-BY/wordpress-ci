@@ -129,23 +129,6 @@ jobs:
           git add .
           git diff --quiet && git diff --staged --quiet || git commit -m "Chart release ${{ needs.bump-ver-push-tag.outputs.tag }}" -m "${{ github.event.head_commit.message }}"       
           git push
-  
-  # slackNotification:
-  #   name: Slack notofication
-  #   if: always()
-  #   needs: [bump-ver-push-tag, build-and-push-image, chart-release]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Slack Notify
-  #     uses: rtCamp/action-slack-notify@v2.2.0
-  #     env:
-  #         SLACK_CHANNEL: notifications
-  #         SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '
-  #         SLACK_ICON: https://github.com/rtCamp.png?size=48
-  #         SLACK_MESSAGE: 'Wordpress release v${{ needs.bump-ver-push-tag.outputs.tag }} Status: ${{ job.status }} :rocket:'
-  #         SLACK_TITLE: Chart Release
-  #         SLACK_USERNAME: rtCamp
-  #         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
   slackNotification:
     name: Slack notofication
@@ -167,6 +150,6 @@ jobs:
           slack_webhook_url: ${{ secrets.SLACK_WEBHOOK }}
           # Optional Input
           channel: '#notifications'
-          name: 'Workflow Bot | Wordpress |Release version: ${{ needs.bump-ver-push-tag.outputs.tag }}'
+          name: 'Workflow Bot | Wordpress | Release version: ${{ needs.bump-ver-push-tag.outputs.tag }}'
           icon_emoji: ':rocket:'
           icon_url: 'https://github.com/rtCamp.png?size=48'
