@@ -96,7 +96,7 @@ jobs:
   
   chart-release:
     name: Chart release
-    needs: [bump-ver-push-tag, lint-helm]
+    needs: [bump-ver-push-tag, lint-helm, build-and-push-image]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
