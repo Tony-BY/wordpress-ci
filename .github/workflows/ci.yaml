@@ -117,13 +117,12 @@ jobs:
           version: v3.10.0
 
       - name: Sync Repo
-        run: cd main && sh sync.sh
+        run: cd main && sh package.sh
 
       - name: Move folder
         run: |
           mv main/gh-pages/* gh-pages
           cd gh-pages
-          ls -ll
           helm repo index --url https://tony-by.github.io/wordpress-ci/ --merge index.yaml .
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
