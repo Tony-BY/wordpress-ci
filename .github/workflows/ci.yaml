@@ -161,7 +161,7 @@ jobs:
     steps:
       - name: Prepare Slack message
         id: status
-        uses: actions/github-script@0.8.0
+        uses: actions/github-script@v6.3.1
         with:
           script: |
             ////////////////////////////////////
@@ -257,7 +257,7 @@ jobs:
                         type: "section",
                         text: {
                             type: "mrkdwn",
-                            text: "<https://github.com/${{ github.repository }}|*${{ github.repository }}*>\nfrom *${{ github.ref }}@" + commit + "*"
+                            text: "<https://github.com/${{ github.repository }}|*${{ github.repository }}*>\nfrom *${{ github.ref }}@" + commit + "*"\nRelease version: v${{ needs.bump-ver-push-tag.outputs.tag }}
                         }
                     },
                     {
