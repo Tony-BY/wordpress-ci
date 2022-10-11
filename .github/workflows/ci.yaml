@@ -166,7 +166,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           slack_webhook_url: ${{ secrets.SLACK_WEBHOOK }}
           # Optional Input
-          channel: '#notifictions'
+          channel: '#notifications'
           name: 'Workflow Bot'
           icon_emoji: ':rocket:'
-          icon_url: 'https://avatars0.githubusercontent.com/u/1701160?s=96&v=4'
+          icon_url: 'https://github.com/rtCamp.png?size=48'
