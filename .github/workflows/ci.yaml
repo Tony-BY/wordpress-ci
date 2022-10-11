@@ -150,7 +150,7 @@ jobs:
   slackNotification:
     name: Slack notofication
     if: always()
-    heeds:
+    needs:
        - bump-ver-push-tag
        - docker-lint
        - build-and-push-image
@@ -280,4 +280,5 @@ jobs:
       - name: Send to Slack
         if: always()
         run: |
-          curl -X POST ${{ secrets.SLACK_WEBHOOK }} -H "Content-type: application/json" --data '${{ steps.status.outputs.result }}'           
+          curl -X POST ${{ secrets.SLACK_WEBHOOK }} -H "Content-type: application/json" --data '${{ steps.status.outputs.result }}'
+           
