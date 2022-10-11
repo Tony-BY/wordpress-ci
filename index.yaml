@@ -2,8 +2,19 @@ apiVersion: v1
 entries:
   wordpress:
   - apiVersion: v2
+    appVersion: 0.0.48
+    created: "2022-10-11T09:18:43.724665102Z"
+    description: Project SA-Wordpress
+    digest: 99a9b8ebdb17a1b07f778d1bae62b180f1222b24c791f2fffc36419a326d329a
+    icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
+    name: wordpress
+    type: application
+    urls:
+    - https://tony-by.github.io/wordpress-ci/wordpress-0.0.48.tgz
+    version: 0.0.48
+  - apiVersion: v2
     appVersion: 0.0.47
-    created: "2022-10-11T09:09:47.101152391Z"
+    created: "2022-10-11T09:18:43.724294201Z"
     description: Project SA-Wordpress
     digest: cb2a917ea8dc5b1abaae16dd2e086930e847f400188e87fc4840dd1daaf083af
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -14,7 +25,7 @@ entries:
     version: 0.0.47
   - apiVersion: v2
     appVersion: 0.0.46
-    created: "2022-10-11T09:09:47.099969283Z"
+    created: "2022-10-11T09:18:43.723925699Z"
     description: Project SA-Wordpress
     digest: 870c430870664263fcee49ebc13e534f358e2276c278df1b042b3754f95ae048
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -25,7 +36,7 @@ entries:
     version: 0.0.46
   - apiVersion: v2
     appVersion: 0.0.45
-    created: "2022-10-11T09:09:47.09958038Z"
+    created: "2022-10-11T09:18:43.723545898Z"
     description: Project SA-Wordpress
     digest: d94a339b23f1b22b468ab25fa1d6091b23b16d759f3287fc1f4ab54a943f87be
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -36,7 +47,7 @@ entries:
     version: 0.0.45
   - apiVersion: v2
     appVersion: 0.0.44
-    created: "2022-10-11T09:09:47.099197078Z"
+    created: "2022-10-11T09:18:43.722790694Z"
     description: Project SA-Wordpress
     digest: fb5e3bea8c23855b931c61f3c371879e40f8310934084c51f2d45947cd8aabc8
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -47,7 +58,7 @@ entries:
     version: 0.0.44
   - apiVersion: v2
     appVersion: 0.0.43
-    created: "2022-10-11T09:09:47.098825275Z"
+    created: "2022-10-11T09:18:43.722411393Z"
     description: Project SA-Wordpress
     digest: e0200b313825a7f28ece3104a31c53f71a54480f740aaadfc9c65d2a3bbd27fe
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -58,7 +69,7 @@ entries:
     version: 0.0.43
   - apiVersion: v2
     appVersion: 0.0.42
-    created: "2022-10-11T09:09:47.098441872Z"
+    created: "2022-10-11T09:18:43.722023591Z"
     description: Project SA-Wordpress
     digest: e660100c03145c041df95dfde9dd0fd9696dd03502b7c5ac91031ac96c97ac59
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -69,7 +80,7 @@ entries:
     version: 0.0.42
   - apiVersion: v2
     appVersion: 0.0.41
-    created: "2022-10-11T09:09:47.09806597Z"
+    created: "2022-10-11T09:18:43.721639989Z"
     description: Project SA-Wordpress
     digest: 01aab2c6e6434e4eb1ec6b37d7eab120856431029332ae7ecd78939d9c4abe31
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -80,7 +91,7 @@ entries:
     version: 0.0.41
   - apiVersion: v2
     appVersion: 0.0.40
-    created: "2022-10-11T09:09:47.097677767Z"
+    created: "2022-10-11T09:18:43.721244288Z"
     description: Project SA-Wordpress
     digest: dfa859d26482bdc38dfd2c20ef9be3b7d594bb8d4cb1b8a4d8344e84dd75ae3b
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -91,7 +102,7 @@ entries:
     version: 0.0.40
   - apiVersion: v2
     appVersion: 0.0.39
-    created: "2022-10-11T09:09:47.097298264Z"
+    created: "2022-10-11T09:18:43.720853386Z"
     description: Project SA-Wordpress
     digest: 760ad78854d6a49bdc1e4b9697c10c58ebd3b100cc8e8e38461872d2bd01a16f
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -102,7 +113,7 @@ entries:
     version: 0.0.39
   - apiVersion: v2
     appVersion: 0.0.38
-    created: "2022-10-11T09:09:47.096920862Z"
+    created: "2022-10-11T09:18:43.720468984Z"
     description: Project SA-Wordpress
     digest: 0198768544cb1afff0b090ddd5fa38f1684bc41408c2039173faeff4f82f8319
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -113,7 +124,7 @@ entries:
     version: 0.0.38
   - apiVersion: v2
     appVersion: 0.0.37
-    created: "2022-10-11T09:09:47.096508759Z"
+    created: "2022-10-11T09:18:43.720037882Z"
     description: Project SA-Wordpress
     digest: e7c9778a00c0c37e012b3b165c3e7e6790ddb90faf424b4ef33de393a3f0de21
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -124,7 +135,7 @@ entries:
     version: 0.0.37
   - apiVersion: v2
     appVersion: 0.0.36
-    created: "2022-10-11T09:09:47.096095256Z"
+    created: "2022-10-11T09:18:43.719628781Z"
     description: Project SA-Wordpress
     digest: 43dfe324dc056268c522b8e2e88b7a04b146276c1bc684acf625d6a0ae2bd02c
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -135,7 +146,7 @@ entries:
     version: 0.0.36
   - apiVersion: v2
     appVersion: 0.0.35
-    created: "2022-10-11T09:09:47.095665153Z"
+    created: "2022-10-11T09:18:43.719181879Z"
     description: Project SA-Wordpress
     digest: 5200da2ed61e5096f7d525c79a13ee70f39d92e8b7670ccb8c87de06671f322c
     icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
@@ -144,4 +155,4 @@ entries:
     urls:
     - https://tony-by.github.io/wordpress-ci/wordpress-0.0.35.tgz
     version: 0.0.35
-generated: "2022-10-11T09:09:47.095022948Z"
+generated: "2022-10-11T09:18:43.718162674Z"
