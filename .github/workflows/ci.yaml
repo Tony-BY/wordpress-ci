@@ -132,6 +132,7 @@ jobs:
   
   slackNotification:
     name: Slack notofication
+    if: always()
     needs: [bump-ver-push-tag, build-and-push-image, chart-release]
     runs-on: ubuntu-latest
     steps:
