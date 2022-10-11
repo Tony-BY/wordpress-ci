@@ -167,6 +167,6 @@ jobs:
           slack_webhook_url: ${{ secrets.SLACK_WEBHOOK }}
           # Optional Input
           channel: '#notifications'
-          name: 'Workflow Bot'
+          name: 'Workflow Bot | Wordpress |Release version: ${{ needs.bump-ver-push-tag.outputs.tag }}'
           icon_emoji: ':rocket:'
           icon_url: 'https://github.com/rtCamp.png?size=48'
