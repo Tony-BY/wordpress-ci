@@ -2,6 +2,6 @@ apiVersion: v2
 name: wordpress
 description: Project SA-Wordpress
 type: application
-version: 0.0.53
-appVersion: 0.0.53
+version: 0.0.54
+appVersion: 0.0.54
 icon: https://cdn-icons-png.flaticon.com/512/174/174881.png
