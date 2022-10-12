@@ -18,25 +18,25 @@ Status of last build and package <br>
 
 ---
 ## Technologies which were used in project
-### **Orchestration:** Kubernetes
-### **Automation tools:** Github actions, Argo CD
-### **SCM:** GitHub
-### **Notification:** Slack
-### **Other tools:** Docker, Helm, Argo Rollouts
+- **Orchestration:** Kubernetes
+- **Automation tools:** Github actions, Argo CD
+- **SCM:** GitHub
+- **Notification:** Slack
+- **Other tools:** Docker, Helm, Argo Rollouts
 ---
 
 ## CI/CD description:
 GitHub actions workflow starting after pushing to the main branch.
 
 ### CI following steps:
-| Action                        |                             |
+| Action|Description|
 |------------|------------------------------------------------|
 |**Bump version and push tag** | Automatically bump and push tag. |
 |**Docker Lint** | Verifying `Dockerfile`.|
-|**Build and push image**|Build docker image and push it to the Docker Hub. This action will not start if the **Docker Lint** failed.|
+|**Build and push image**|Build docker image and push it to the Docker Hub. This action will not start if the **Docker Lint** fails.|
 |**Generate Chart**|Update *appVersion* and *version* in the `Chart.yaml` and push changes to the **main** branch.|
-|**Helm Lint**|Verifying Helm Chart. This action will not start if the **Generate Chart** failed.|
-|**Chart release**|This action generate a helm diagram package and update file `index.yaml`. Push changes to the **gh-pages** branch. Will not be start if **Build and push image** or **Helm Lint** failed.|
+|**Helm Lint**|Verifying Helm Chart. This action will not start if the **Generate Chart** fails.|
+|**Chart release**|This action generates a helm diagram package and updates file `index.yaml`. Push changes to the **gh-pages** branch. Will not be start if **Build and push image** or **Helm Lint** fail.|
 |**Slack Notification**|Send notification to the Slack mesenger.|
 
 ### CD following steps:
