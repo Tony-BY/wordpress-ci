@@ -25,7 +25,7 @@ jobs:
     needs: bump-ver-push-tag
     runs-on: ubuntu-latest
     steps: 
-      - name: Checkecout
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Docker Lint
@@ -40,7 +40,7 @@ jobs:
     needs: [bump-ver-push-tag, docker-lint]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkecout
+      - name: Checkout
         uses: actions/checkout@v3
       
       - name: Login to the Container registry
@@ -61,7 +61,7 @@ jobs:
     needs: bump-ver-push-tag
     runs-on: ubuntu-latest
     steps:
-      - name: Checkecout
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Update appVersion & Chart version
