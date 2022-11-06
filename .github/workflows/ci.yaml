@@ -15,7 +15,7 @@ jobs:
       
       - name: Bump version and push tag
         id: tag_version
-        uses: mathieudutour/github-tag-action@v6.0
+        uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag_prefix: "" 
@@ -143,7 +143,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Workflow Notification
-        uses: Gamesight/slack-workflow-status@v1.1.0
+        uses: Gamesight/slack-workflow-status@master
         with:
           # Required Input
           repo_token: ${{ secrets.GITHUB_TOKEN }}
