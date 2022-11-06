@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+env:
+  NEW_TAG:
+
 jobs:
   bump-ver-push-tag:
     name: Bump version and push tag 
@@ -20,7 +23,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           tag_prefix: "" 
       - run: |
-          echo "new_tag=${{ steps.tag_version.outputs.new_tag }}" >> $GITHUB_ENV  
+          echo "NEW_TAG=${{ steps.tag_version.outputs.new_tag }}" >> $GITHUB_ENV  
   
   docker-lint:
     name: Docker Lint
@@ -56,7 +59,7 @@ jobs:
         with:
           context: ./wordpress
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/wordpress:${{ env.new_tag }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/wordpress:${{ env.NEW_TAG }}
   
   generate-chart:
     name: Generate Chart
@@ -68,15 +71,15 @@ jobs:
 
       - name: Update appVersion & Chart version
         run: |
-          sed -i "s/^version:.*$/version: ${{ env.new_tag }}/" ./charts/wordpress/Chart.yaml
-          sed -i "s/^appVersion:.*$/appVersion: ${{ env.new_tag }}/" ./charts/wordpress/Chart.yaml
+          sed -i "s/^version:.*$/version: ${{ env.NEW_TAG }}/" ./charts/wordpress/Chart.yaml
+          sed -i "s/^appVersion:.*$/appVersion: ${{ env.NEW_TAG }}/" ./charts/wordpress/Chart.yaml
 
       - name: Commit changes
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add .
-          git commit -m "Update Chart to ${{ env.new_tag }} by GitHub Actions"
+          git commit -m "Update Chart to ${{ env.NEW_TAG }} by GitHub Actions"
           git push origin main
   
   lint-helm:
@@ -129,7 +132,7 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add .
-          git diff --quiet && git diff --staged --quiet || git commit -m "Chart release ${{ env.new_tag }}" -m "${{ github.event.head_commit.message }}"       
+          git diff --quiet && git diff --staged --quiet || git commit -m "Chart release ${{ env.NEW_TAG }}" -m "${{ github.event.head_commit.message }}"       
           git push
 
   slackNotification:
@@ -152,6 +155,6 @@ jobs:
           slack_webhook_url: ${{ secrets.SLACK_WEBHOOK }}
           # Optional Input
           channel: '#notifications'
-          name: 'Workflow Bot | Wordpress | Release version: ${{ env.new_tag }}'
+          name: 'Workflow Bot | Wordpress | Release version: ${{ env.NEW_TAG }}'
           icon_emoji: ':rocket:'
           icon_url: 'https://github.com/rtCamp.png?size=48'
