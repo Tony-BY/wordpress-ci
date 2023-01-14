@@ -143,7 +143,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack Workflow Notification
-        uses: Gamesight/slack-workflow-status@master
+        uses: Gamesight/slack-workflow-status@v1.2.0
         with:
           # Required Input
           repo_token: ${{ secrets.GITHUB_TOKEN }}
